@@ -6,10 +6,11 @@ const breedDetailsFromFile = function(breed, callback) {
   fs.readFile(`./data/${breed}.txt`, 'utf8', (error, data) => {
     // CHANGE 1: Pass data back via callback instead of return.
     console.log('Callback: I have the data!')
-    if (!error) callback(data); 
+    if (!error) {
+      callback(data)
+    } else {
+      callback(undefined);
+    }
   });
 }
-
-breedDetailsFromFile('Bombay', (bombay) => {
-  console.log('Return Value: ', bombay) // => print out details correctly.
-});
+module.exports = breedDetailsFromFile;
